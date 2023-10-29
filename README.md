@@ -1,5 +1,3 @@
-Absolutely! Let's extend the content and sprinkle in more emojis to make it even more engaging.
-
 ---
 
 # MainPortfolio: 🚀 Embark on a Journey Through My Digital Universe 🌐
