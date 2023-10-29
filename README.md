@@ -2,6 +2,7 @@
 
 # MainPortfolio: 🚀 Embark on a Journey Through My Digital Universe 🌐
 
+---
 Welcome to my digital playground! My MainPortfolio isn't just a collection of web pages; it's an adventure through my professional life and a canvas for my creative expression. 🚀🌐
 
 ### 🌟 What Awaits You?
