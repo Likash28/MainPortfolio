@@ -35,3 +35,19 @@ Remember, this digital journey is ever-evolving. I'm constantly learning and gro
 
 So, take your time to explore, get to know me, and maybe even find some inspiration for your own digital endeavors. I'm thrilled to have you here, and I hope you enjoy the MainPortfolio as much as I enjoyed creating it! 🌟🌿
 
+## Running locally
+
+This is a static site with no build step, but the skills/projects/certifications
+sections load data via `fetch()`, which browsers block on the `file://`
+protocol. Serve the folder over HTTP instead:
+
+```bash
+# Option A: Node (no install needed)
+npx serve .
+
+# Option B: Python
+python -m http.server 8000
+```
+
+Then open the printed `http://localhost:...` URL in your browser.
+
