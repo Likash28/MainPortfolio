@@ -66,6 +66,11 @@ section {
   color: var(--text);
   margin-bottom: 3rem;
 }
+.heading h1,
+.heading h2 {
+  font-size: inherit;
+  font-weight: inherit;
+}
 .heading span,
 h1 span,
 h2 span,

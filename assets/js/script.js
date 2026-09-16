@@ -61,7 +61,7 @@ document.addEventListener('visibilitychange',
     function () {
         if (document.visibilityState === 'visible') {
             document.title = 'Likash Gunisetti Portfolio';
-            $('#favicon').attr('href', 'assets/images/Likas1');
+            $('#favicon').attr('href', 'assets/images/Likas1.jpg');
         }
     });
 
@@ -143,8 +143,15 @@ function renderProjects(projects) {
     const container = document.getElementById('projects-container');
     let html = '';
     projects.forEach(function (project) {
-        const viewClass = project.links.view === '#' ? 'is-placeholder' : '';
-        const codeClass = project.links.code === '#' ? 'is-placeholder' : '';
+        const viewBtn = project.links.view !== '#'
+            ? `<a href="${project.links.view}" target="_blank"><i class="fas fa-eye"></i> View</a>`
+            : '';
+        const codeBtn = project.links.code !== '#'
+            ? `<a href="${project.links.code}" target="_blank">Code <i class="fas fa-code"></i></a>`
+            : '';
+        const btns = (viewBtn || codeBtn)
+            ? `<div class="btns">${viewBtn}${codeBtn}</div>`
+            : '';
         html += `
       <div class="box card-surface">
         <img draggable="false" src="./assets/images/projects/${project.image}" alt="${project.name}">
@@ -152,10 +159,7 @@ function renderProjects(projects) {
           <div class="tag">
             <h3>${project.name}</h3>
           </div>
-          <div class="btns">
-            <a href="${project.links.view}" target="_blank" class="${viewClass}"><i class="fas fa-eye"></i> View</a>
-            <a href="${project.links.code}" target="_blank" class="${codeClass}">Code <i class="fas fa-code"></i></a>
-          </div>
+          ${btns}
         </div>
       </div>`;
     });
@@ -167,21 +171,30 @@ function renderCertifications(certifications) {
     const container = document.getElementById('certifications-container');
     let html = '';
     certifications.forEach(function (cert) {
-        const placeholderClass = cert.link === '#' ? 'is-placeholder' : '';
-        html += `
-      <a href="${cert.link}" target="_blank" class="box card-surface ${placeholderClass}">
+        const inner = `
         <img draggable="false" src="./assets/images/${cert.image}" alt="${cert.name}">
         <div class="content">
           <div class="tag">
             <h3>${cert.name}</h3>
           </div>
-        </div>
-      </a>`;
+        </div>`;
+        html += cert.link === '#'
+            ? `<div class="box card-surface">${inner}</div>`
+            : `<a href="${cert.link}" target="_blank" class="box card-surface">${inner}</a>`;
     });
     container.innerHTML = html;
     srtop.reveal('#certifications-container .box', { interval: 150 });
 }
 
-loadJSON('./assets/data/skills.json').then(renderSkills).catch(function (err) { console.error(err); });
-loadJSON('./assets/data/projects.json').then(renderProjects).catch(function (err) { console.error(err); });
-loadJSON('./assets/data/certifications.json').then(renderCertifications).catch(function (err) { console.error(err); });
+loadJSON('./assets/data/skills.json').then(renderSkills).catch(function (err) {
+    console.error(err);
+    document.getElementById('skills-container').innerHTML = '<p>Skills failed to load.</p>';
+});
+loadJSON('./assets/data/projects.json').then(renderProjects).catch(function (err) {
+    console.error(err);
+    document.getElementById('projects-container').innerHTML = '<p>Projects failed to load.</p>';
+});
+loadJSON('./assets/data/certifications.json').then(renderCertifications).catch(function (err) {
+    console.error(err);
+    document.getElementById('certifications-container').innerHTML = '<p>Certifications failed to load.</p>';
+});
