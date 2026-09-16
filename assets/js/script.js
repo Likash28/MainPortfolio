@@ -11,8 +11,10 @@ $(document).ready(function () {
 
         if (window.scrollY > 60) {
             document.querySelector('#scroll-top').classList.add('active');
+            document.querySelector('header').classList.add('scrolled');
         } else {
             document.querySelector('#scroll-top').classList.remove('active');
+            document.querySelector('header').classList.remove('scrolled');
         }
 
         // scroll spy
@@ -37,169 +39,45 @@ $(document).ready(function () {
         }, 500, 'linear')
     });
 
-    // <!-- emailjs to mail contact form data -->
-    $("#contact-form").submit(function (event) {
-        emailjs.init("user_TTDmetQLYgWCLzHTDgqxm");
+    // emailjs to mail contact form data
+    $('#contact-form').submit(function (event) {
+        event.preventDefault();
+        emailjs.init('user_TTDmetQLYgWCLzHTDgqxm');
 
         emailjs.sendForm('contact_service', 'template_contact', '#contact-form')
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
-                document.getElementById("contact-form").reset();
-                alert("Form Submitted Successfully");
+                document.getElementById('contact-form').reset();
+                alert('Message sent successfully!');
             }, function (error) {
                 console.log('FAILED...', error);
-                alert("Form Submission Failed! Try Again");
+                alert('Message failed to send. Please try again.');
             });
-        event.preventDefault();
     });
-    // <!-- emailjs to mail contact form data -->
 
 });
 
 document.addEventListener('visibilitychange',
     function () {
-        if (document.visibilityState === "visible") {
-            document.title = "Likash Gunisetti Portfolio";
-            $("#favicon").attr("href", "assets/images/Likas1");
+        if (document.visibilityState === 'visible') {
+            document.title = 'Likash Gunisetti Portfolio';
+            $('#favicon').attr('href', 'assets/images/Likas1');
         }
     });
 
-
-// <!-- typed js effect starts -->
-var typed = new Typed(".typing-text", {
-    strings: ["Machine Learning", "Data Science", "Artificial Intelligence", "Deep Learning", "Computer Vision","Natural Language Processing"],
+// typed js effect
+var typed = new Typed('.typing-text', {
+    strings: ['Machine Learning', 'Data Science', 'Artificial Intelligence', 'Deep Learning', 'Computer Vision', 'Natural Language Processing'],
     loop: true,
     typeSpeed: 50,
     backSpeed: 25,
     backDelay: 500,
 });
-// <!-- typed js effect ends -->
 
-
-async function fetchData(type = "skills") {
-    let response
-    type === "skills" ?
-        response = await fetch("skills.json")
-        :
-        response = await fetch("./projects/projects.json")
-    const data = await response.json();
-    return data;
-}
-
-function showSkills() {
-    let skillsContainer = document.getElementById("skillsContainer");
-    let skillHTML = "";
-    
-    // Fetch the data from the JSON file
-    fetch('path/to/skills.json')
-      .then(response => response.json()) // Parse the JSON data into an object
-      .then(skills => {
-        // Loop through each skill and generate the HTML code
-        skills.forEach(skill => {
-          skillHTML += `
-            <div class="bar">
-              <div class="info">
-                <img src=${skill.icon} alt="skill" />
-                <span>${skill.name}</span>
-              </div>
-            </div>`;
-        });
-        // Insert the HTML code into the skills container element
-        skillsContainer.innerHTML = skillHTML;
-      });
-  }
-  
-
-function showProjects(projects) {
-    let projectsContainer = document.querySelector("#work .box-container");
-    let projectHTML = "";
-    projects.slice(0, 10).filter(project => project.category != "android").forEach(project => {
-        projectHTML += `
-        <div class="box tilt">
-      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
-      <div class="content">
-        <div class="tag">
-        <h3>${project.name}</h3>
-        </div>
-        <div class="desc">
-          <p>${project.desc}</p>
-          <div class="btns">
-            <a href="${project.links.view}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="${project.links.code}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>`
-    });
-    projectsContainer.innerHTML = projectHTML;
-
-    // <!-- tilt js effect starts -->
-    VanillaTilt.init(document.querySelectorAll(".tilt"), {
-        max: 15,
-    });
-    // <!-- tilt js effect ends -->
-
-    /* ===== SCROLL REVEAL ANIMATION ===== */
-    const srtop = ScrollReveal({
-        origin: 'top',
-        distance: '80px',
-        duration: 1000,
-        reset: true
-    });
-
-    /* SCROLL PROJECTS */
-    srtop.reveal('.work .box', { interval: 200 });
-
-}
-
-fetchData().then(data => {
-    showSkills(data);
-});
-
-fetchData("projects").then(data => {
-    showProjects(data);
-});
-
-// <!-- tilt js effect starts -->
-VanillaTilt.init(document.querySelectorAll(".tilt"), {
+// tilt.js effect on profile images
+VanillaTilt.init(document.querySelectorAll('.tilt'), {
     max: 15,
 });
-// <!-- tilt js effect ends -->
-
-
-// pre loader start
-// function loader() {
-//     document.querySelector('.loader-container').classList.add('fade-out');
-// }
-// function fadeOut() {
-//     setInterval(loader, 500);
-// }
-// window.onload = fadeOut;
-// pre loader end
-
-// disable developer mode
-document.onkeydown = function (e) {
-    if (e.keyCode == 123) {
-        return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-        return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-        return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-        return false;
-    }
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-        return false;
-    }
-}
-
-// Start of Tawk.to Live Chat
-
-// End of Tawk.to Live Chat
-
 
 /* ===== SCROLL REVEAL ANIMATION ===== */
 const srtop = ScrollReveal({
@@ -209,64 +87,101 @@ const srtop = ScrollReveal({
     reset: true
 });
 
-/* SCROLL HOME */
-srtop.reveal('.home .content h3', { delay: 200 });
+srtop.reveal('.home .content h2', { delay: 200 });
 srtop.reveal('.home .content p', { delay: 200 });
 srtop.reveal('.home .content .btn', { delay: 200 });
-
 srtop.reveal('.home .image', { delay: 400 });
-srtop.reveal('.home .linkedin', { interval: 600 });
-srtop.reveal('.home .github', { interval: 800 });
-srtop.reveal('.home .twitter', { interval: 1000 });
-srtop.reveal('.home .telegram', { interval: 600 });
-srtop.reveal('.home .instagram', { interval: 600 });
-srtop.reveal('.home .dev', { interval: 600 });
+srtop.reveal('.home .social-icons li', { interval: 150 });
 
-/* SCROLL ABOUT */
-srtop.reveal('.about .content h3', { delay: 200 });
-srtop.reveal('.about .content .tag', { delay: 200 });
-srtop.reveal('.about .content p', { delay: 200 });
-srtop.reveal('.about .content .box-container', { delay: 200 });
-srtop.reveal('.about .content .resumebtn', { delay: 200 });
+srtop.reveal('.about .row .image', { delay: 200 });
+srtop.reveal('.about .row .content', { delay: 300 });
 
-
-/* SCROLL SKILLS */
-srtop.reveal('.skills .container', { interval: 200 });
-srtop.reveal('.skills .container .bar', { delay: 400 });
-
-/* SCROLL EDUCATION */
 srtop.reveal('.education .box', { interval: 200 });
 
-/* SCROLL PROJECTS */
-srtop.reveal('.work .box', { interval: 200 });
+srtop.reveal('.experience .timeline', { delay: 200 });
+srtop.reveal('.experience .container', { interval: 200 });
 
-/* SCROLL EXPERIENCE */
-srtop.reveal('.experience .timeline', { delay: 400 });
-srtop.reveal('.experience .timeline .container', { interval: 400 });
+srtop.reveal('.contact .container', { delay: 200 });
 
-/* SCROLL CONTACT */
-srtop.reveal('.contact .container', { delay: 400 });
-srtop.reveal('.contact .container .form-group', { delay: 400 });
+/* ===== JSON-driven content ===== */
 
+async function loadJSON(path) {
+    const response = await fetch(path);
+    if (!response.ok) {
+        throw new Error(`Failed to load ${path}: ${response.status}`);
+    }
+    return response.json();
+}
 
+function renderSkills(skills) {
+    const container = document.getElementById('skills-container');
+    const groups = {};
+    skills.forEach(function (skill) {
+        if (!groups[skill.category]) groups[skill.category] = [];
+        groups[skill.category].push(skill);
+    });
 
+    let html = '';
+    Object.keys(groups).forEach(function (category) {
+        html += `<div class="skills-group"><h3>${category}</h3><div class="row">`;
+        groups[category].forEach(function (skill) {
+            html += `
+        <div class="bar">
+          <div class="info">
+            <span>${skill.name}</span>
+          </div>
+        </div>`;
+        });
+        html += `</div></div>`;
+    });
 
+    container.innerHTML = html;
+    srtop.reveal('.skills .bar', { interval: 40 });
+}
 
+function renderProjects(projects) {
+    const container = document.getElementById('projects-container');
+    let html = '';
+    projects.forEach(function (project) {
+        const viewClass = project.links.view === '#' ? 'is-placeholder' : '';
+        const codeClass = project.links.code === '#' ? 'is-placeholder' : '';
+        html += `
+      <div class="box card-surface">
+        <img draggable="false" src="./assets/images/projects/${project.image}" alt="${project.name}">
+        <div class="content">
+          <div class="tag">
+            <h3>${project.name}</h3>
+          </div>
+          <div class="btns">
+            <a href="${project.links.view}" target="_blank" class="${viewClass}"><i class="fas fa-eye"></i> View</a>
+            <a href="${project.links.code}" target="_blank" class="${codeClass}">Code <i class="fas fa-code"></i></a>
+          </div>
+        </div>
+      </div>`;
+    });
+    container.innerHTML = html;
+    srtop.reveal('#projects-container .box', { interval: 150 });
+}
 
-// const count = document.getElementById("count");
+function renderCertifications(certifications) {
+    const container = document.getElementById('certifications-container');
+    let html = '';
+    certifications.forEach(function (cert) {
+        const placeholderClass = cert.link === '#' ? 'is-placeholder' : '';
+        html += `
+      <a href="${cert.link}" target="_blank" class="box card-surface ${placeholderClass}">
+        <img draggable="false" src="./assets/images/${cert.image}" alt="${cert.name}">
+        <div class="content">
+          <div class="tag">
+            <h3>${cert.name}</h3>
+          </div>
+        </div>
+      </a>`;
+    });
+    container.innerHTML = html;
+    srtop.reveal('#certifications-container .box', { interval: 150 });
+}
 
-// IncrementVisitCount();
-
-// function IncrementVisitCount(){
-//     let visits;
-    
-//     if (!localStorage.getItem("Visits")) localStorage.setItem("Visits", 1);
-//     visits = +localStorage.getItem("visits");
-//     const incrementedCount = visits + 1;
-
-//     localStorage.setItem("Visits", incrementedCount);
-
-//     count.innerText = localStorage.getItem("visits");
-
- 
-// }
+loadJSON('./assets/data/skills.json').then(renderSkills).catch(function (err) { console.error(err); });
+loadJSON('./assets/data/projects.json').then(renderProjects).catch(function (err) { console.error(err); });
+loadJSON('./assets/data/certifications.json').then(renderCertifications).catch(function (err) { console.error(err); });

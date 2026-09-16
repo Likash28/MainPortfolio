@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Hand-Gesture Game",
+    "image": "handgestres.jpg",
+    "links": { "view": "#", "code": "#" }
+  },
+  {
+    "name": "Dalgona Coffee Mocha",
+    "image": "coffee.jpg",
+    "links": { "view": "#", "code": "#" }
+  },
+  {
+    "name": "Rand_Portfolio",
+    "image": "Randport.jpg",
+    "links": { "view": "https://likash28.github.io/My-Potofolio/", "code": "#" }
+  },
+  {
+    "name": "Iris Cataract Detection",
+    "image": "cataract.jpg",
+    "links": { "view": "#", "code": "#" }
+  },
+  {
+    "name": "Hand-Gesture PPT-Controller",
+    "image": "ppt.jpg",
+    "links": { "view": "#", "code": "#" }
+  },
+  {
+    "name": "Enzyme Thermo Stability Prediction & Sequence Generation",
+    "image": "sequal.jpg",
+    "links": {
+      "view": "#",
+      "code": "https://github.com/Likash28/Enzyme-Thermo-Stability-Predection-Sequence-Generation.git"
+    }
+  }
+]

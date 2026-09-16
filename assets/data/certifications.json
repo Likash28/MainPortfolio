@@ -1,0 +1,32 @@
+[
+  {
+    "name": "AWS Cloud Foundations",
+    "image": "Blogs/AWS.jpg",
+    "link": "https://www.credly.com/badges/fd6cf6ab-0497-468b-8158-659525391b6a/linked_in_profile"
+  },
+  {
+    "name": "Introduction to ML",
+    "image": "Blogs/Introduction_ML.jpg",
+    "link": "https://archive.nptel.ac.in/noc/B2C/candidate_login/candidate_scores.php?courseid=noc22-cs97"
+  },
+  {
+    "name": "Introduction Scripting-Python",
+    "image": "Blogs/Intro_Scripting_Python.jpg",
+    "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/734H7KDZENRY"
+  },
+  {
+    "name": "OOP in Java",
+    "image": "Blogs/OOP_in_Java.jpg",
+    "link": "https://www.coursera.org/account/accomplishments/certificate/YS84YJHWL7LL"
+  },
+  {
+    "name": "UI/UX",
+    "image": "Blogs/uiux.png",
+    "link": "#"
+  },
+  {
+    "name": "Power BI",
+    "image": "Blogs/powerbi.png",
+    "link": "#"
+  }
+]
