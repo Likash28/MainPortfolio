@@ -44,6 +44,10 @@ body {
   color: var(--text);
   font-family: var(--font-body);
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
 *::selection {
   background: var(--accent);
   color: #fff;
