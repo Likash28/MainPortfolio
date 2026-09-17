@@ -33,10 +33,24 @@ $(document).ready(function () {
 
     // smooth scrolling
     $('a[href*="#"]').on('click', function (e) {
+        const href = $(this).attr('href');
+        if (href === '#') return;
         e.preventDefault();
         $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top,
+            scrollTop: $(href).offset().top,
         }, 500, 'linear')
+    });
+
+    // visitor counter
+    $.ajax({
+        type: 'GET',
+        url: 'https://api.countapi.xyz/update/likash/gunisetti/?amount=1',
+        success: function (data) {
+            $('#counter').text(data.value);
+        },
+        error: function () {
+            $('#counter').text('N/A');
+        }
     });
 
     // emailjs to mail contact form data
@@ -144,10 +158,10 @@ function renderProjects(projects) {
     let html = '';
     projects.forEach(function (project) {
         const viewBtn = project.links.view !== '#'
-            ? `<a href="${project.links.view}" target="_blank"><i class="fas fa-eye"></i> View</a>`
+            ? `<a href="${project.links.view}" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> View</a>`
             : '';
         const codeBtn = project.links.code !== '#'
-            ? `<a href="${project.links.code}" target="_blank">Code <i class="fas fa-code"></i></a>`
+            ? `<a href="${project.links.code}" target="_blank" rel="noopener noreferrer">Code <i class="fas fa-code"></i></a>`
             : '';
         const btns = (viewBtn || codeBtn)
             ? `<div class="btns">${viewBtn}${codeBtn}</div>`
@@ -180,7 +194,7 @@ function renderCertifications(certifications) {
         </div>`;
         html += cert.link === '#'
             ? `<div class="box card-surface">${inner}</div>`
-            : `<a href="${cert.link}" target="_blank" class="box card-surface">${inner}</a>`;
+            : `<a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="box card-surface">${inner}</a>`;
     });
     container.innerHTML = html;
     srtop.reveal('#certifications-container .box', { interval: 150 });
