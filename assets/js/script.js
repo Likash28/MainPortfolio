@@ -58,6 +58,11 @@ $(document).ready(function () {
     // emailjs to mail contact form data
     $('#contact-form').submit(function (event) {
         event.preventDefault();
+
+        if ($(this).find('[name="website"]').val()) {
+            return; // honeypot filled in -> silently drop
+        }
+
         emailjs.init('user_TTDmetQLYgWCLzHTDgqxm');
 
         emailjs.sendForm('contact_service', 'template_contact', '#contact-form')
