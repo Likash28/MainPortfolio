@@ -796,6 +796,15 @@ header .navbar ul li a:hover {
   bottom: 2rem;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* common breakpoints */
 @media (max-width: 450px) {
   html {
