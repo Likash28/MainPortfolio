@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -55,7 +55,6 @@
           <li><a class="dev" aria-label="Leetcode" href="https://leetcode.com/likass/" target="_blank"><i class="fa-solid fa-code-branch"></i></a></li>
           <li><a class="codechef" aria-label="codechef" href="https://www.codechef.com/users/likcode_123" target="_blank"><i class="fa-sharp fa-solid fa-code"></i></a></li>
           <li><a class="dev" aria-label="Leetcode" href="https://medium.com/@likashgunisetti" target="_blank"><i class="fab fa-medium-m"></i></a></li>
-          <!-- <li><a class="dev" aria-label="Leetcode" href="https://leetcode.com/likass/" target="_blank"><i class="fa-solid fa-file-code"></i></a></li> -->
           <li><a class="dev" aria-label="Kaggle" href="https://www.kaggle.com/gunisettilikash" target="_blank"><i class="fab fa-kaggle"></i></a></li>
         </ul>
       </div>
@@ -310,20 +309,8 @@
   <div class="box-container">
           <div class="box">
               <h3>Likash Gunisetti's Portfolio</h3>
-              <p>Thank you for visiting my personal portfolio website. Connect with me over Social Media Handles. <br/> <br/> 
-              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+              <p>Thank you for visiting my personal portfolio website. Connect with me over Social Media Handles. <br/> <br/>
               <p>You are visitor number: <span id="counter">Loading...</span></p>
-              <script>
-                  $(document).ready(function() {
-                      $.ajax({
-                          type: "GET",
-                          url: "https://api.countapi.xyz/update/likash/gunisetti/?amount=1",
-                          success: function(data) {
-                              $("#counter").text(data.value);
-                          }
-                      });
-                  });
-              </script>
               <br> <a href="https://www.linkedin.com/in/likash-gunisetti/">CONTACT ME</a> </p>
           </div>
           
@@ -393,20 +380,18 @@
 
 <script src="./assets/js/script.js"></script>
 
+<!-- visitor counter (uses the single jQuery load above) -->
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "https://api.countapi.xyz/update/likash/gunisetti/?amount=1",
+            success: function(data) {
+                $("#counter").text(data.value);
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- https://api.countapi.xyz/create?namespace=likash&key=gunisetti&value=0 -->
