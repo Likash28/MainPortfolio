@@ -2,14 +2,25 @@ $(document).ready(function () {
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    const mobileNav = window.matchMedia('(max-width: 768px)');
+    function syncNavInert() {
+        const navbar = document.querySelector('.navbar');
+        const isOpen = navbar.classList.contains('nav-toggle');
+        navbar.toggleAttribute('inert', mobileNav.matches && !isOpen);
+    }
+    syncNavInert();
+    mobileNav.addEventListener('change', syncNavInert);
+
     $('#menu').click(function () {
         $(this).toggleClass('fa-times');
         $('.navbar').toggleClass('nav-toggle');
+        syncNavInert();
     });
 
     $(window).on('scroll load', function () {
         $('#menu').removeClass('fa-times');
         $('.navbar').removeClass('nav-toggle');
+        syncNavInert();
 
         if (window.scrollY > 60) {
             document.querySelector('#scroll-top').classList.add('active');
