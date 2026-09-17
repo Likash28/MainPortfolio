@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     $('#menu').click(function () {
         $(this).toggleClass('fa-times');
         $('.navbar').toggleClass('nav-toggle');
