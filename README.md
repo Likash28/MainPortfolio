@@ -1,10 +1,12 @@
 # MainPortfolio
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9b2e1dd0-1d37-4d52-bdea-3024c75eb274/deploy-status)](https://app.netlify.com/projects/likashgunisetti/deploys)
+
 Likash Gunisetti's personal portfolio: a single-page site covering background,
 education, projects, experience, certifications, and skills, with a working
 contact form.
 
-Live: https://likash28.github.io/MainPortfolio/
+Live: https://likashgunisetti.netlify.app/
 
 ## Sections
 
