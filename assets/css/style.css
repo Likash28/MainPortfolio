@@ -692,3 +692,44 @@ main > section {
   height: 1px;
   overflow: hidden;
 }
+
+/* ===== Footer ===== */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 0;
+}
+.footer-inner {
+  text-align: center;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.footer-links a {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.footer-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.footer-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 450px) {
+  main > section {
+    padding: 2.5rem 0;
+  }
+}
