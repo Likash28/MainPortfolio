@@ -1,32 +1,32 @@
 [
   {
-    "name": "AWS Cloud Foundations",
+    "name": "Databricks Certified Generative AI Engineer Associate — Databricks, Jul 2026",
+    "image": "Blogs/AWS.jpg",
+    "link": "#"
+  },
+  {
+    "name": "AWS Academy Graduate: Cloud Foundations — Amazon Web Services, Oct 2022",
     "image": "Blogs/AWS.jpg",
     "link": "https://www.credly.com/badges/fd6cf6ab-0497-468b-8158-659525391b6a/linked_in_profile"
   },
   {
-    "name": "Introduction to ML",
-    "image": "Blogs/Introduction_ML.jpg",
-    "link": "https://archive.nptel.ac.in/noc/B2C/candidate_login/candidate_scores.php?courseid=noc22-cs97"
-  },
-  {
-    "name": "Introduction Scripting-Python",
-    "image": "Blogs/Intro_Scripting_Python.jpg",
-    "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/734H7KDZENRY"
-  },
-  {
-    "name": "OOP in Java",
-    "image": "Blogs/OOP_in_Java.jpg",
-    "link": "https://www.coursera.org/account/accomplishments/certificate/YS84YJHWL7LL"
-  },
-  {
-    "name": "UI/UX",
+    "name": "Certification of Merit, AI & ML Bootcamp — Microsoft Learn Student Chapter",
     "image": "Blogs/uiux.png",
     "link": "#"
   },
   {
-    "name": "Power BI",
-    "image": "Blogs/powerbi.png",
-    "link": "#"
+    "name": "Object Oriented Programming in Java — Coursera, Jun 2022",
+    "image": "Blogs/OOP_in_Java.jpg",
+    "link": "https://www.coursera.org/account/accomplishments/certificate/YS84YJHWL7LL"
+  },
+  {
+    "name": "Introduction to Scripting in Python — Coursera, Jul 2022",
+    "image": "Blogs/Intro_Scripting_Python.jpg",
+    "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/734H7KDZENRY"
+  },
+  {
+    "name": "Introduction to Machine Learning — NPTEL, Jun 2022",
+    "image": "Blogs/Introduction_ML.jpg",
+    "link": "https://archive.nptel.ac.in/noc/B2C/candidate_login/candidate_scores.php?courseid=noc22-cs97"
   }
 ]
