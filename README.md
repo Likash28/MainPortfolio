@@ -8,28 +8,34 @@ contact form.
 
 Live: https://likashgunisetti.netlify.app/
 
+Single-page, light/dark theme (persisted, defaults to OS preference), no
+build step, no JS framework and no jQuery — the design follows
+[venugopalkadamba.github.io](https://github.com/venugopalkadamba/venugopalkadamba.github.io)'s
+structure and visual system.
+
 ## Sections
 
 - **Home** — intro and social links
-- **About** — bio and contact summary
-- **Education** — academic history
+- **About** — bio + contact/profile card
+- **Experience** / **Internships** — timeline entries
+- **Education** — text-only cards
 - **Projects** — pulled from `assets/data/projects.json`
-- **Experience** — internships and freelance work
-- **Certifications** — pulled from `assets/data/certifications.json`
 - **Skills** — pulled from `assets/data/skills.json`
+- **Certifications** — pulled from `assets/data/certifications.json`
 - **Contact** — form sent via EmailJS
 
 ## Stack
 
-Plain HTML/CSS/JS, no build step or framework. Third-party libraries
-(jQuery, Typed.js, VanillaTilt, ScrollReveal, particles.js, EmailJS,
-Font Awesome) are loaded via CDN or vendored under `assets/js/`.
+Plain HTML/CSS + vanilla JS, no build step, no frameworks, no jQuery.
+Third-party dependencies kept: **EmailJS** (contact form) and
+**Font Awesome** (icons) via CDN, plus **DM Sans**/**Fraunces** from
+Google Fonts.
 
 ## Running locally
 
 The Projects/Certifications/Skills sections load their data via `fetch()`,
 which browsers block on the `file://` protocol. Serve the folder over HTTP
-instead:
+instead: 
 
 ```bash
 # Option A: Node (no install needed)
