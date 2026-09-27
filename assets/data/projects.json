@@ -2,31 +2,37 @@
   {
     "name": "Hand-Gesture Game",
     "image": "handgestres.jpg",
+    "description": "A game controlled entirely through real-time hand-gesture recognition.",
     "links": { "view": "#", "code": "#" }
   },
   {
     "name": "Dalgona Coffee Mocha",
     "image": "coffee.jpg",
+    "description": "A recipe/how-to project inspired by the Dalgona coffee trend.",
     "links": { "view": "#", "code": "#" }
   },
   {
     "name": "Rand_Portfolio",
     "image": "Randport.jpg",
+    "description": "An earlier personal portfolio site design.",
     "links": { "view": "https://likash28.github.io/My-Potofolio/", "code": "#" }
   },
   {
     "name": "Iris Cataract Detection",
     "image": "cataract.jpg",
+    "description": "A computer-vision model for detecting cataracts from iris images.",
     "links": { "view": "#", "code": "#" }
   },
   {
     "name": "Hand-Gesture PPT-Controller",
     "image": "ppt.jpg",
+    "description": "Controls PowerPoint slide navigation using real-time hand gestures.",
     "links": { "view": "#", "code": "#" }
   },
   {
     "name": "Enzyme Thermo Stability Prediction & Sequence Generation",
     "image": "sequal.jpg",
+    "description": "Predicts enzyme thermal stability and generates protein sequences using ML.",
     "links": {
       "view": "#",
       "code": "https://github.com/Likash28/Enzyme-Thermo-Stability-Predection-Sequence-Generation.git"
