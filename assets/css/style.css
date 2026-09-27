@@ -645,3 +645,50 @@ main > section {
   font-size: 0.95rem;
   color: var(--text-muted);
 }
+
+/* ===== Contact ===== */
+.contact-form {
+  max-width: 32rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.form-group label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.form-group textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+.contact-form .btn {
+  align-self: flex-start;
+}
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
