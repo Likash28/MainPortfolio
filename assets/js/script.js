@@ -136,4 +136,62 @@
       );
     });
   }
+
+  function loadJSON(path) {
+    return fetch(path).then(function (response) {
+      if (!response.ok) throw new Error('Failed to load ' + path + ': ' + response.status);
+      return response.json();
+    });
+  }
+
+  function observeNewReveals(container) {
+    var els = container.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      els.forEach(function (el) {
+        obs.observe(el);
+      });
+    } else {
+      els.forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    }
+  }
+
+  function renderSkills(skills) {
+    var container = document.getElementById('skills-container');
+    if (!container) return;
+    var groups = {};
+    skills.forEach(function (skill) {
+      if (!groups[skill.category]) groups[skill.category] = [];
+      groups[skill.category].push(skill);
+    });
+
+    var html = '';
+    Object.keys(groups).forEach(function (category) {
+      html += '<div class="skill-group reveal"><h3>' + category + '</h3><ul class="skill-pills">';
+      groups[category].forEach(function (skill) {
+        html += '<li>' + skill.name + '</li>';
+      });
+      html += '</ul></div>';
+    });
+    container.innerHTML = html;
+    observeNewReveals(container);
+  }
+
+  loadJSON('./assets/data/skills.json').then(renderSkills).catch(function (err) {
+    console.error(err);
+    var el = document.getElementById('skills-container');
+    if (el) el.innerHTML = '<p>Skills failed to load.</p>';
+  });
 })();
