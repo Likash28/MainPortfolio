@@ -69,4 +69,23 @@
       if (!mobileQuery.matches) closeNav();
     });
   }
+
+  var header = document.getElementById('site-header');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main > section[id]'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+
+  function onScroll() {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+
+    var scrollPos = window.scrollY + (header ? header.offsetHeight : 0) + 40;
+    var currentId = sections.length ? sections[0].id : null;
+    sections.forEach(function (section) {
+      if (section.offsetTop <= scrollPos) currentId = section.id;
+    });
+    navLinks.forEach(function (link) {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 })();
