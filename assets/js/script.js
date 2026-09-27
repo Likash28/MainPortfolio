@@ -1,232 +1,31 @@
-$(document).ready(function () {
+(function () {
+  var root = document.documentElement;
+  var THEME_KEY = 'theme';
 
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const mobileNav = window.matchMedia('(max-width: 768px)');
-    function syncNavInert() {
-        const navbar = document.querySelector('.navbar');
-        const isOpen = navbar.classList.contains('nav-toggle');
-        navbar.toggleAttribute('inert', mobileNav.matches && !isOpen);
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+    } else {
+      root.removeAttribute('data-theme');
     }
-    syncNavInert();
-    mobileNav.addEventListener('change', syncNavInert);
+  }
 
-    $('#menu').click(function () {
-        $(this).toggleClass('fa-times');
-        $('.navbar').toggleClass('nav-toggle');
-        syncNavInert();
+  var storedTheme = null;
+  try {
+    storedTheme = localStorage.getItem(THEME_KEY);
+  } catch (e) {}
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(storedTheme || (prefersDark ? 'dark' : 'light'));
+
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      var next = isDark ? 'light' : 'dark';
+      applyTheme(next);
+      try {
+        localStorage.setItem(THEME_KEY, next);
+      } catch (e) {}
     });
-
-    $(window).on('scroll load', function () {
-        $('#menu').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
-        syncNavInert();
-
-        if (window.scrollY > 60) {
-            document.querySelector('#scroll-top').classList.add('active');
-            document.querySelector('header').classList.add('scrolled');
-        } else {
-            document.querySelector('#scroll-top').classList.remove('active');
-            document.querySelector('header').classList.remove('scrolled');
-        }
-
-        // scroll spy
-        $('section').each(function () {
-            let height = $(this).height();
-            let offset = $(this).offset().top - 200;
-            let top = $(window).scrollTop();
-            let id = $(this).attr('id');
-
-            if (top > offset && top < offset + height) {
-                $('.navbar ul li a').removeClass('active');
-                $('.navbar').find(`[href="#${id}"]`).addClass('active');
-            }
-        });
-    });
-
-    // smooth scrolling
-    $('a[href*="#"]').on('click', function (e) {
-        const href = $(this).attr('href');
-        if (href === '#') return;
-        e.preventDefault();
-        $('html, body').animate({
-            scrollTop: $(href).offset().top,
-        }, 500, 'linear')
-    });
-
-    // visitor counter
-    $.ajax({
-        type: 'GET',
-        url: 'https://api.countapi.xyz/update/likash/gunisetti/?amount=1',
-        success: function (data) {
-            $('#counter').text(data.value);
-        },
-        error: function () {
-            $('#counter').text('N/A');
-        }
-    });
-
-    // emailjs to mail contact form data
-    $('#contact-form').submit(function (event) {
-        event.preventDefault();
-
-        if ($(this).find('[name="website"]').val()) {
-            return; // honeypot filled in -> silently drop
-        }
-
-        emailjs.init('user_TTDmetQLYgWCLzHTDgqxm');
-
-        emailjs.sendForm('contact_service', 'template_contact', '#contact-form')
-            .then(function (response) {
-                console.log('SUCCESS!', response.status, response.text);
-                document.getElementById('contact-form').reset();
-                alert('Message sent successfully!');
-            }, function (error) {
-                console.log('FAILED...', error);
-                alert('Message failed to send. Please try again.');
-            });
-    });
-
-});
-
-document.addEventListener('visibilitychange',
-    function () {
-        if (document.visibilityState === 'visible') {
-            document.title = 'Likash Gunisetti Portfolio';
-            $('#favicon').attr('href', 'assets/images/Likas1.jpg');
-        }
-    });
-
-// typed js effect
-var typed = new Typed('.typing-text', {
-    strings: ['Machine Learning', 'Data Science', 'Artificial Intelligence', 'Deep Learning', 'Computer Vision', 'Natural Language Processing'],
-    loop: true,
-    typeSpeed: 50,
-    backSpeed: 25,
-    backDelay: 500,
-});
-
-// tilt.js effect on profile images
-VanillaTilt.init(document.querySelectorAll('.tilt'), {
-    max: 15,
-});
-
-/* ===== SCROLL REVEAL ANIMATION ===== */
-const srtop = ScrollReveal({
-    origin: 'top',
-    distance: '80px',
-    duration: 1000,
-    reset: true
-});
-
-srtop.reveal('.home .content h2', { delay: 200 });
-srtop.reveal('.home .content p', { delay: 200 });
-srtop.reveal('.home .content .btn', { delay: 200 });
-srtop.reveal('.home .image', { delay: 400 });
-srtop.reveal('.home .social-icons li', { interval: 150 });
-
-srtop.reveal('.about .row .image', { delay: 200 });
-srtop.reveal('.about .row .content', { delay: 300 });
-
-srtop.reveal('.education .box', { interval: 200 });
-
-srtop.reveal('.experience .timeline', { delay: 200 });
-srtop.reveal('.experience .container', { interval: 200 });
-
-srtop.reveal('.contact .container', { delay: 200 });
-
-/* ===== JSON-driven content ===== */
-
-async function loadJSON(path) {
-    const response = await fetch(path);
-    if (!response.ok) {
-        throw new Error(`Failed to load ${path}: ${response.status}`);
-    }
-    return response.json();
-}
-
-function renderSkills(skills) {
-    const container = document.getElementById('skills-container');
-    const groups = {};
-    skills.forEach(function (skill) {
-        if (!groups[skill.category]) groups[skill.category] = [];
-        groups[skill.category].push(skill);
-    });
-
-    let html = '';
-    Object.keys(groups).forEach(function (category) {
-        html += `<div class="skills-group"><h3>${category}</h3><div class="row">`;
-        groups[category].forEach(function (skill) {
-            html += `
-        <div class="bar">
-          <div class="info">
-            <span>${skill.name}</span>
-          </div>
-        </div>`;
-        });
-        html += `</div></div>`;
-    });
-
-    container.innerHTML = html;
-    srtop.reveal('.skills .bar', { interval: 40 });
-}
-
-function renderProjects(projects) {
-    const container = document.getElementById('projects-container');
-    let html = '';
-    projects.forEach(function (project) {
-        const viewBtn = project.links.view !== '#'
-            ? `<a href="${project.links.view}" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i> View</a>`
-            : '';
-        const codeBtn = project.links.code !== '#'
-            ? `<a href="${project.links.code}" target="_blank" rel="noopener noreferrer">Code <i class="fas fa-code"></i></a>`
-            : '';
-        const btns = (viewBtn || codeBtn)
-            ? `<div class="btns">${viewBtn}${codeBtn}</div>`
-            : '';
-        html += `
-      <div class="box card-surface">
-        <img draggable="false" src="./assets/images/projects/${project.image}" alt="${project.name}">
-        <div class="content">
-          <div class="tag">
-            <h3>${project.name}</h3>
-          </div>
-          ${btns}
-        </div>
-      </div>`;
-    });
-    container.innerHTML = html;
-    srtop.reveal('#projects-container .box', { interval: 150 });
-}
-
-function renderCertifications(certifications) {
-    const container = document.getElementById('certifications-container');
-    let html = '';
-    certifications.forEach(function (cert) {
-        const inner = `
-        <img draggable="false" src="./assets/images/${cert.image}" alt="${cert.name}">
-        <div class="content">
-          <div class="tag">
-            <h3>${cert.name}</h3>
-          </div>
-        </div>`;
-        html += cert.link === '#'
-            ? `<div class="box card-surface">${inner}</div>`
-            : `<a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="box card-surface">${inner}</a>`;
-    });
-    container.innerHTML = html;
-    srtop.reveal('#certifications-container .box', { interval: 150 });
-}
-
-loadJSON('./assets/data/skills.json').then(renderSkills).catch(function (err) {
-    console.error(err);
-    document.getElementById('skills-container').innerHTML = '<p>Skills failed to load.</p>';
-});
-loadJSON('./assets/data/projects.json').then(renderProjects).catch(function (err) {
-    console.error(err);
-    document.getElementById('projects-container').innerHTML = '<p>Projects failed to load.</p>';
-});
-loadJSON('./assets/data/certifications.json').then(renderCertifications).catch(function (err) {
-    console.error(err);
-    document.getElementById('certifications-container').innerHTML = '<p>Certifications failed to load.</p>';
-});
+  }
+})();
