@@ -28,4 +28,45 @@
       } catch (e) {}
     });
   }
+
+  var navbar = document.getElementById('navbar');
+  var menuToggle = document.getElementById('menu-toggle');
+  var mobileQuery = window.matchMedia('(max-width: 880px)');
+
+  function syncNavInert() {
+    if (!navbar) return;
+    var isOpen = navbar.classList.contains('nav-open');
+    navbar.toggleAttribute('inert', mobileQuery.matches && !isOpen);
+  }
+  syncNavInert();
+  mobileQuery.addEventListener('change', syncNavInert);
+
+  function closeNav() {
+    if (!navbar || !menuToggle) return;
+    navbar.classList.remove('nav-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    syncNavInert();
+  }
+
+  if (menuToggle && navbar) {
+    menuToggle.addEventListener('click', function () {
+      var isOpen = navbar.classList.toggle('nav-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      syncNavInert();
+    });
+
+    navbar.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeNav);
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!navbar.classList.contains('nav-open')) return;
+      if (navbar.contains(event.target) || menuToggle.contains(event.target)) return;
+      closeNav();
+    });
+
+    window.addEventListener('resize', function () {
+      if (!mobileQuery.matches) closeNav();
+    });
+  }
 })();
