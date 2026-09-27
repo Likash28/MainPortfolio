@@ -396,3 +396,53 @@ main > section {
     order: -1;
   }
 }
+
+/* ===== About ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.about-bio {
+  color: var(--text-muted);
+}
+.about-meta {
+  padding: 1.5rem;
+}
+.about-meta p {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+.meta-label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 0.15rem;
+}
+.about-meta a:hover {
+  color: var(--accent);
+}
+.meta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.meta-links a {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.meta-links a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 700px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
