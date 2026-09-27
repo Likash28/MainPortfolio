@@ -110,4 +110,30 @@
       el.classList.add('is-visible');
     });
   }
+
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  var contactForm = document.getElementById('contact-form');
+  if (contactForm && window.emailjs) {
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (contactForm.querySelector('[name="website"]').value) {
+        return; // honeypot filled in -> silently drop
+      }
+
+      emailjs.init('user_TTDmetQLYgWCLzHTDgqxm');
+      emailjs.sendForm('contact_service', 'template_contact', '#contact-form').then(
+        function () {
+          contactForm.reset();
+          alert('Message sent successfully!');
+        },
+        function (error) {
+          console.error('EmailJS send failed:', error);
+          alert('Message failed to send. Please try again.');
+        }
+      );
+    });
+  }
 })();
