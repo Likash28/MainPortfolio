@@ -189,9 +189,34 @@
     observeNewReveals(container);
   }
 
+  function renderProjects(projects) {
+    var container = document.getElementById('projects-container');
+    if (!container) return;
+    var html = '';
+    projects.forEach(function (project) {
+      var link = project.links.code !== '#' ? project.links.code : project.links.view;
+      var title = link && link !== '#'
+        ? '<a href="' + link + '" target="_blank" rel="noopener noreferrer">' + project.name + '</a>'
+        : project.name;
+      html +=
+        '<article class="project-card reveal">' +
+        '<h3>' + title + '</h3>' +
+        '<p>' + (project.description || '') + '</p>' +
+        '<span class="project-tags">Project</span>' +
+        '</article>';
+    });
+    container.innerHTML = html;
+    observeNewReveals(container);
+  }
+
   loadJSON('./assets/data/skills.json').then(renderSkills).catch(function (err) {
     console.error(err);
     var el = document.getElementById('skills-container');
     if (el) el.innerHTML = '<p>Skills failed to load.</p>';
+  });
+  loadJSON('./assets/data/projects.json').then(renderProjects).catch(function (err) {
+    console.error(err);
+    var el = document.getElementById('projects-container');
+    if (el) el.innerHTML = '<p>Projects failed to load.</p>';
   });
 })();
