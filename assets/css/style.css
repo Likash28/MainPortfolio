@@ -619,3 +619,29 @@ main > section {
   border: 1px solid var(--border);
   font-size: 0.88rem;
 }
+
+/* ===== Certifications ===== */
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+.cert-list li {
+  border-bottom: 1px solid var(--border);
+}
+.cert-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.25rem;
+  font-size: 0.95rem;
+}
+.cert-list a:hover {
+  color: var(--accent);
+}
+.cert-list span.cert-plain {
+  display: block;
+  padding: 1rem 0.25rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
