@@ -595,3 +595,27 @@ main > section {
   letter-spacing: 0.04em;
   color: var(--accent);
 }
+
+/* ===== Skills ===== */
+.skill-group {
+  margin-bottom: 1.75rem;
+}
+.skill-group h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.skill-pills li {
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  font-size: 0.88rem;
+}
