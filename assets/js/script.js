@@ -219,4 +219,22 @@
     var el = document.getElementById('projects-container');
     if (el) el.innerHTML = '<p>Projects failed to load.</p>';
   });
+
+  function renderCertifications(certifications) {
+    var container = document.getElementById('certifications-container');
+    if (!container) return;
+    var html = '';
+    certifications.forEach(function (cert) {
+      html += cert.link === '#'
+        ? '<li><span class="cert-plain">' + cert.name + '</span></li>'
+        : '<li><a href="' + cert.link + '" target="_blank" rel="noopener noreferrer">' + cert.name + ' &rarr;</a></li>';
+    });
+    container.innerHTML = html;
+  }
+
+  loadJSON('./assets/data/certifications.json').then(renderCertifications).catch(function (err) {
+    console.error(err);
+    var el = document.getElementById('certifications-container');
+    if (el) el.innerHTML = '<p>Certifications failed to load.</p>';
+  });
 })();
